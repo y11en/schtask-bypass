@@ -10,10 +10,29 @@
 
 若想修改计划任务的名字，请修改源码中wszTaskName，这里为了减少输入项暂时未让用户输入计划任务名字。
 
+## Dll_task_boot
+
 开机启动使用Dll_task_boot，以SYSTEM权限执行计划任务，filename为计划任务的启动程序，通过AttachConsole将输出转到父进程控制台。进而获取到dll的输出：
 
 rundll32 Dll_task_boot,DllMain filename
 
 ![1667714567689](https://user-images.githubusercontent.com/48757788/200157286-7e00113a-486f-4942-affb-d4ad574fbaf8.jpg)
+
+## Dll_task_login
+
+登陆启动使用Dll_task_login，需要输入用户名、权限、计划任务的启动程序三个参数：
+
+以管理员用户为例
+
+rundll32 Dll_task_login,DllMain Administrator S-1-5-32-544 calc.exe
+
+SID可以从whoami /all中当前所在组的别名中来找到
+
+![1667727180462](https://user-images.githubusercontent.com/48757788/200163611-14a5870e-5b5c-458d-b303-b55232652d8e.jpg)
+
+
+
+
+
 
 
