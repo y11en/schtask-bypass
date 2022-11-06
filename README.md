@@ -28,8 +28,7 @@ rundll32 Dll_task_login,DllMain Administrator S-1-5-32-544 calc.exe
 
 SID可以从whoami /all中当前所在组的别名中来找到
 
-![1667727180462](https://user-images.githubusercontent.com/48757788/200163611-14a5870e-5b5c-458d-b303-b55232652d8e.jpg)
-
+![1667727254525](https://user-images.githubusercontent.com/48757788/200163656-fad69c20-b056-41e2-aa30-2d2f0e000aa9.jpg)
 
 
 
