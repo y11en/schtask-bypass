@@ -1,0 +1,7 @@
+﻿  dllmain.cpp
+    正在创建库 D:\Studying\Programming\BypassAntiVirus\Dll_task_login\x64\Release\Dll_task_login.lib 和对象 D:\Studying\Programming\BypassAntiVirus\Dll_task_login\x64\Release\Dll_task_login.exp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 102 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Dll_task_login.vcxproj -> D:\Studying\Programming\BypassAntiVirus\Dll_task_login\x64\Release\Dll_task_login.dll
