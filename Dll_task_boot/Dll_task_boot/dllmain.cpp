@@ -1,16 +1,17 @@
-﻿#define _WIN32_DCOM
+#define _WIN32_DCOM
 
 #include <windows.h>
 #include <iostream>
 #include <stdio.h>
 #include <comdef.h>
 #include <taskschd.h>
+#include "tlhelp32.h"
 #pragma comment(lib, "taskschd.lib")
 #pragma comment(lib, "comsupp.lib")
 
 using namespace std;
 
-int login(LPWSTR filename)
+int login(HANDLE han, LPWSTR filename)
 {
 
     HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
@@ -112,14 +113,15 @@ int login(LPWSTR filename)
         &pRegisteredTask);
     if (FAILED(hr))
     {
-        printf("\nError saving the Task : %x", hr);
+        WriteConsole(han, L"\nError saving the Task", 23, new DWORD, 0);
+        //printf("\nError saving the Task : %x", hr);
         pRootFolder->Release();
         pTask->Release();
         CoUninitialize();
         return 1;
     }
 
-    printf("Success!");
+    WriteConsole(han, L"Success", 8, new DWORD, 0);
 
     pRootFolder->Release();
     pTask->Release();
@@ -139,16 +141,34 @@ extern "C" __declspec(dllexport) BOOL APIENTRY DllMain(HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:;
+        int pid;
+        HANDLE h;
+        PROCESSENTRY32 pe;
+        HANDLE han;
+        h = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+        pid = GetCurrentProcessId();
+        pe.dwSize = sizeof(PROCESSENTRY32);
+        if (Process32First(h, &pe)) {
+            do {
+                if (pe.th32ProcessID == pid) {
+                    AttachConsole(pe.th32ParentProcessID);
+                }
+            } while (Process32Next(h, &pe));
+        }
+        han = GetStdHandle(STD_OUTPUT_HANDLE);
+        CloseHandle(h);
+
         LPWSTR* szArgList;
         int argCount;
 
         szArgList = CommandLineToArgvW(GetCommandLine(), &argCount);
         if (argCount != 3)
         {
-            cout << "rundll.exe Dll_task_boot,DllMain filename" << endl;
+            WriteConsole(han, L"rundll.exe Dll_task_boot,DllMain filename", 42, new DWORD, 0);
             return 1;
         }
-        login(szArgList[2]);
+
+        login(han, szArgList[2]);
         LocalFree(szArgList);
         break;
     case DLL_THREAD_ATTACH:
@@ -158,4 +178,3 @@ extern "C" __declspec(dllexport) BOOL APIENTRY DllMain(HMODULE hModule,
     }
     return TRUE;
 }
-
