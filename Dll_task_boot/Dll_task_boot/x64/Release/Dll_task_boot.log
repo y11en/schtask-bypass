@@ -1,0 +1,7 @@
+﻿  dllmain.cpp
+    正在创建库 D:\Studying\Programming\BypassAntiVirus\Dll_task_boot\x64\Release\Dll_task_boot.lib 和对象 D:\Studying\Programming\BypassAntiVirus\Dll_task_boot\x64\Release\Dll_task_boot.exp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 264 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  Dll_task_boot.vcxproj -> D:\Studying\Programming\BypassAntiVirus\Dll_task_boot\x64\Release\Dll_task_boot.dll
