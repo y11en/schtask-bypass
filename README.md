@@ -10,7 +10,7 @@
 
 若想修改计划任务的名字，请修改源码中wszTaskName，这里为了减少输入项暂时未让用户输入计划任务名字。
 
-开机启动使用Dll_task_boot，以SYSTEM权限执行计划任务，filename为计划任务的启动程序：
+开机启动使用Dll_task_boot，以SYSTEM权限执行计划任务，filename为计划任务的启动程序，通过AttachConsole将输出转到父进程控制台。进而获取到dll的输出：
 
 rundll32 Dll_task_boot,DllMain filename
 
